@@ -1,6 +1,6 @@
 import pytest
 import json
-from api import app
+from api import app # Flask instance of the API
 
 def test_index_route():
     response = app.test_client().get('/')
