@@ -1,11 +1,13 @@
 import pytest
 import json
-from api import app # Flask instance of the API
+from api import app # Flask instance of the API, exposes test_client() method to make HTTP requests to application under test
 
 def test_index_route():
     response = app.test_client().get('/')
 
     assert response.status_code == 200
+    # By default, Pytest encodes API responses using the utf-8 codec
+    # decode() method converts the byte objects to readable string
     assert response.data.decode('utf-8') == 'Testing, Flask!'
 
 @pytest.mark.get_request
